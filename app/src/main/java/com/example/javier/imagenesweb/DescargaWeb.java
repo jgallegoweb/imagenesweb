@@ -60,13 +60,6 @@ public class DescargaWeb extends AsyncTask<String, Integer, ArrayList<String>> {
             e.printStackTrace();
         }
 
-        /*Pattern p = Pattern.compile("<img src=([^\"]+).+?>");
-        Matcher m = p.matcher(out);
-        while (m.find()){
-            enlaces.add(m.group());
-        }*/
-
-
         String re1="(<)";	// Any Single Character 1
         String re2="(img)";	// Word 1
         String re3="( )";	// White Space 1
@@ -80,18 +73,11 @@ public class DescargaWeb extends AsyncTask<String, Integer, ArrayList<String>> {
 
         Pattern p = Pattern.compile(re1+re2+re3+re4+re5+re6+re7+re8+re9+re10,Pattern.CASE_INSENSITIVE | Pattern.DOTALL);
         Matcher m = p.matcher(out);
-        while (m.find())
-        {
+        while (m.find()) {
             String httpurl1=m.group(7);
             System.out.println(httpurl1);;
             enlaces.add(httpurl1);
         }
-
-
-
-
-
-
         return enlaces;
     }
 
@@ -99,6 +85,5 @@ public class DescargaWeb extends AsyncTask<String, Integer, ArrayList<String>> {
     protected void onPostExecute(ArrayList<String> strings) {
         ModeloEnlace adaptador = new ModeloEnlace(c, R.layout.item_enlace, strings);
         lv.setAdapter(adaptador);
-
     }
 }
